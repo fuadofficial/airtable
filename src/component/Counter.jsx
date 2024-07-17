@@ -1,14 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export const Counter = () => {
   const [count, setCount] = useState(0);
-  const [count2, setCount2] = useState(0);
 
-  useEffect(() => {
-    console.log("mounding");
-    console.log("Upadating..." + count);
-    
-  }, [count]);
 
   const Increment = () => {
     if (count < 10) {
