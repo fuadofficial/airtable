@@ -1,39 +1,81 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
-import { Counter } from "./component/Counter";
-import axios from "axios";
 
 function App() {
-  const [show, setShow] = useState(false);
-  const [userList, setUserList] = useState([]);
+  const [fields, setFields] = useState({
+    firstName: "",
+    email: "",
+    password: "",
+    genter: "",
+    cuntry: "",
+  });
 
-  const fetchUsers = async () => {
-    try {
-      const response = await axios.get(
-        "https://jsonplaceholder.typicode.com/todos"
-      );
-      setUserList(response.data);
-    } catch (error) {
-      console.error("Error fetching users:", error);
-    }
+  const handleChange = (event) => {
+    setFields((prev) => ({
+      ...prev,
+      [event.target.name]: event.target.value,
+    }));
   };
 
-  useEffect(() => {
-    fetchUsers();
-  }, []);
-
-  console.log(userList);
+  const handleSubmit = (eve) => {
+    eve.preventDefault();
+    console.log(fields);
+  };
 
   return (
-    <div className="counter">
-      <button onClick={() => setShow(!show)}>Show/Hide</button>
-      {show && <Counter />}
-
-      {userList.map((data) => (
-        <ul key={data.id}>
-          <li>{data.title}</li>
-        </ul>
-      ))}
+    <div>
+      <form className="form" onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="firstName">First Name</label>
+          <input
+            id="firstName"
+            type="text"
+            name="firstName"
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="email">Email</label>
+          <input id="email" type="email" name="email" onChange={handleChange} />
+        </div>
+        <div>
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            type="number"
+            name="password"
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="">Genter : </label>
+          <label htmlFor="male"> Male </label>
+          <input
+            id="male"
+            type="radio"
+            value="male"
+            name="genter"
+            onChange={handleChange}
+          />
+          <label htmlFor="female"> Female </label>
+          <input
+            type="radio"
+            id="female"
+            value="female"
+            name="genter"
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <select name="cuntry" onChange={handleChange}>
+            <option value="">Select cuntry</option>
+            <option value="INDIA">INDIA</option>
+            <option value="UAE">UAE</option>
+            <option value="EUROPE">EUROPE</option>
+          </select>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
     </div>
   );
 }
