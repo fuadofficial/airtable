@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import "./styles/global.css";
 
 function App() {
   const [fields, setFields] = useState({
