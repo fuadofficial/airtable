@@ -84,7 +84,7 @@ function App() {
                 <div className="input-section">
                     <label htmlFor="firstName">First Name</label>
                     <input
-                        id="firstName"
+                        id="firstName"  
                         type="text"
                         name="firstName"
                         onChange={handleChange}
