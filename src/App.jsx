@@ -9,6 +9,7 @@ function App() {
         email: "",
         genter: "",
         countrie: "",
+        skills: [],
     });
 
     const [errorFields, setErrorFields] = useState({
@@ -16,6 +17,7 @@ function App() {
         email: false,
         genter: false,
         countrie: false,
+        skills: false,
     })
 
     const handleChange = (event) => {
@@ -25,6 +27,23 @@ function App() {
         }));
         isFormValidationOnBlur(event)
     };
+
+    const handleCheckBox = (event) => {
+        console.log(event.target.value);
+
+        let newSkills = [...fields.skills]
+        if (event.target.value) {
+            newSkills.push(event.target.value)
+            return
+        }
+
+
+        setFields((prev) => ({
+            ...prev,
+            [event.target.name]: event.target.value,
+        }));
+        isFormValidationOnBlur(event)
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -41,6 +60,7 @@ function App() {
             email: false,
             genter: false,
             countrie: false,
+            skills: false,
         }
         if (fields.firstName === "") {
             errors.firstName = true
@@ -53,6 +73,9 @@ function App() {
         }
         if (fields.countrie === "") {
             errors.countrie = true
+        }
+        if (fields.skills === "") {
+            errors.skills = true
         }
         setErrorFields(errors)
 
@@ -73,6 +96,8 @@ function App() {
         } else if (name === "genter" && value === "") {
             error = true;
         } else if (name === "countrie" && value === "") {
+            error = true;
+        } else if (name === "skills" && value === "") {
             error = true;
         }
         setErrorFields((prev) => ({
@@ -120,7 +145,7 @@ function App() {
                     {errorFields.email && <p className="danger">Email is required</p>}
                 </div>
                 <div className="input-section radio-groups">
-                    <label className="radio-title" htmlFor="">Genter : <span className="danger">*</span></label>
+                    <label className="radio-title" htmlFor="genter">Genter : <span className="danger">*</span></label>
                     <div>
                         <input
                             id="male"
@@ -140,7 +165,7 @@ function App() {
                             onBlur={isFormValidationOnBlur}
                         />
                         <label htmlFor="female"> Female </label>
-                        {errorFields.genter && <p className="danger">Genter is required</p>}
+                        {errorFields.genter && <p className="danger">checkbox is required</p>}
                     </div>
                 </div>
                 <div className="input-section dropdown-section">
@@ -152,6 +177,39 @@ function App() {
                         <option value="EUROPE">EUROPE</option>
                     </select>
                     {errorFields.countrie && <p className="danger">Countrie is required</p>}
+                </div>
+                <div className="input-section radio-groups">
+                    <label className="radio-title" htmlFor="skills">Skills <span className="danger">*</span></label>
+                    <div>
+                        <input
+                            id="Javascript"
+                            type="checkbox"
+                            value="Javascript"
+                            name="skills"
+                            onChange={handleCheckBox}
+                            onBlur={isFormValidationOnBlur}
+                        />
+                        <label htmlFor="Javascript"> JavaScript </label>
+                        <input
+                            type="checkbox"
+                            id="react"
+                            value="react"
+                            name="skills"
+                            onChange={handleCheckBox}
+                            onBlur={isFormValidationOnBlur}
+                        />
+                        <label htmlFor="react"> React </label>
+                        <input
+                            type="checkbox"
+                            id="angular"
+                            value="angular"
+                            name="skills"
+                            onChange={handleCheckBox}
+                            onBlur={isFormValidationOnBlur}
+                        />
+                        <label htmlFor="angular"> Angular </label>
+                        {errorFields.skills && <p className="danger">checkbox is required</p>}
+                    </div>
                 </div>
                 <button type="submit">Submit</button>
             </form>
