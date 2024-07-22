@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import "./styles/global.css";
+import TextInput from "./components/TextInput/TextInput";
 
 function App() {
 
@@ -8,7 +9,7 @@ function App() {
         firstName: "",
         email: "",
         genter: "",
-        countrie: "",
+        country: "",
         skills: [],
     });
 
@@ -16,7 +17,7 @@ function App() {
         firstName: false,
         email: false,
         genter: false,
-        countrie: false,
+        country: false,
         skills: false,
     })
 
@@ -29,18 +30,18 @@ function App() {
     };
 
     const handleCheckBox = (event) => {
+        const { checked, value, name } = event.target;
         let newSkills = [...fields.skills]
-        if (event.target.checked) {
-            newSkills.push(event.target.value)
+        if (checked) {
+            newSkills.push(value)
         } else {
-            newSkills = newSkills.filter((skill) => skill !== event.target.value)
+            newSkills = newSkills.filter((skill) => skill !== value)
         }
 
         setFields((prev) => ({
             ...prev,
-            [event.target.name]: newSkills,
+            [name]: newSkills,
         }));
-        isFormValidationOnBlur(event)
     }
 
     const handleSubmit = (event) => {
@@ -57,7 +58,7 @@ function App() {
             firstName: false,
             email: false,
             genter: false,
-            countrie: false,
+            country: false,
             skills: false,
         }
         if (fields.firstName === "") {
@@ -69,10 +70,10 @@ function App() {
         if (fields.genter === "") {
             errors.genter = true
         }
-        if (fields.countrie === "") {
-            errors.countrie = true
+        if (fields.country === "") {
+            errors.country = true
         }
-        if (fields.skills === "") {
+        if (fields.skills.length === 0) {
             errors.skills = true
         }
         setErrorFields(errors)
@@ -93,9 +94,9 @@ function App() {
             error = true;
         } else if (name === "genter" && value === "") {
             error = true;
-        } else if (name === "countrie" && value === "") {
+        } else if (name === "country" && value === "") {
             error = true;
-        } else if (name === "skills" && value === "") {
+        } else if (name === "skills" && value.length === 0) {
             error = true;
         }
         setErrorFields((prev) => ({
@@ -125,17 +126,7 @@ function App() {
             <form className="form" onSubmit={handleSubmit} autoComplete="off">
                 <h1>Register</h1>
                 <p className="caption">Please fill the form.</p>
-                <div className="input-section">
-                    <label htmlFor="firstName">First Name <span className="danger">*</span></label>
-                    <input
-                        id="firstName"
-                        type="text"
-                        name="firstName"
-                        onChange={handleChange}
-                        onBlur={isFormValidationOnBlur}
-                    />
-                    {errorFields.firstName && <p className="danger">First Name is required</p>}
-                </div>
+                <TextInput handleChange={handleChange} isFormValidationOnBlur={isFormValidationOnBlur} errorFields={errorFields} label={'First Name'} />
                 <div className="input-section">
                     <label htmlFor="email">Email <span className="danger">*</span></label>
                     <input id="email" type="email" name="email" onChange={handleChange} onBlur={isFormValidationOnBlur}
@@ -167,14 +158,14 @@ function App() {
                     </div>
                 </div>
                 <div className="input-section dropdown-section">
-                    <label htmlFor="select-countrie">Countrie <span className="danger">*</span></label>
-                    <select id="select-countrie" name="countrie" onChange={handleChange} onBlur={isFormValidationOnBlur}                    >
+                    <label htmlFor="select-country">Country <span className="danger">*</span></label>
+                    <select id="select-country" name="country" onChange={handleChange} onBlur={isFormValidationOnBlur}                    >
                         <option value="">Select Countrie</option>
                         <option value="INDIA">INDIA</option>
                         <option value="UAE">UAE</option>
                         <option value="EUROPE">EUROPE</option>
                     </select>
-                    {errorFields.countrie && <p className="danger">Countrie is required</p>}
+                    {errorFields.country && <p className="danger">Countrie is required</p>}
                 </div>
                 <div className="input-section radio-groups">
                     <label className="radio-title" htmlFor="skills">Skills <span className="danger">*</span></label>
