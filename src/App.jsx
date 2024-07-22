@@ -29,18 +29,16 @@ function App() {
     };
 
     const handleCheckBox = (event) => {
-        console.log(event.target.value);
-
         let newSkills = [...fields.skills]
-        if (event.target.value) {
+        if (event.target.checked) {
             newSkills.push(event.target.value)
-            return
+        } else {
+            newSkills = newSkills.filter((skill) => skill !== event.target.value)
         }
-
 
         setFields((prev) => ({
             ...prev,
-            [event.target.name]: event.target.value,
+            [event.target.name]: newSkills,
         }));
         isFormValidationOnBlur(event)
     }
