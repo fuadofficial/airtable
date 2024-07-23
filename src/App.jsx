@@ -2,6 +2,9 @@ import { useState } from "react";
 import "./App.css";
 import "./styles/global.css";
 import { TextInput } from "./components/TextInput/TextInput";
+import {Genter} from "./components/Genter/Genter";
+import {Dropdown} from "./components/Dropdown/Dropdown";
+import {Radio} from "./components/Radio/Radio";
 
 function App() {
 
@@ -144,73 +147,31 @@ function App() {
                     name="email"
                     type="email"
                 />
-                <div className="input-section radio-groups">
-                    <label className="radio-title" htmlFor="genter">Genter : <span className="danger">*</span></label>
-                    <div>
-                        <input
-                            id="male"
-                            type="radio"
-                            value="male"
-                            name="genter"
-                            onChange={handleChange}
-                            onBlur={isFormValidationOnBlur}
-                        />
-                        <label htmlFor="male"> Male </label>
-                        <input
-                            type="radio"
-                            id="female"
-                            value="female"
-                            name="genter"
-                            onChange={handleChange}
-                            onBlur={isFormValidationOnBlur}
-                        />
-                        <label htmlFor="female"> Female </label>
-                        {errorFields.genter && <p className="danger">checkbox is required</p>}
-                    </div>
-                </div>
-                <div className="input-section dropdown-section">
-                    <label htmlFor="select-country">Country <span className="danger">*</span></label>
-                    <select id="select-country" name="country" onChange={handleChange} onBlur={isFormValidationOnBlur}                    >
-                        <option value="">Select Countrie</option>
-                        <option value="INDIA">INDIA</option>
-                        <option value="UAE">UAE</option>
-                        <option value="EUROPE">EUROPE</option>
-                    </select>
-                    {errorFields.country && <p className="danger">Countrie is required</p>}
-                </div>
-                <div className="input-section radio-groups">
-                    <label className="radio-title" htmlFor="skills">Skills <span className="danger">*</span></label>
-                    <div>
-                        <input
-                            id="Javascript"
-                            type="checkbox"
-                            value="Javascript"
-                            name="skills"
-                            onChange={handleCheckBox}
-                            onBlur={isFormValidationOnBlur}
-                        />
-                        <label htmlFor="Javascript"> JavaScript </label>
-                        <input
-                            type="checkbox"
-                            id="react"
-                            value="react"
-                            name="skills"
-                            onChange={handleCheckBox}
-                            onBlur={isFormValidationOnBlur}
-                        />
-                        <label htmlFor="react"> React </label>
-                        <input
-                            type="checkbox"
-                            id="angular"
-                            value="angular"
-                            name="skills"
-                            onChange={handleCheckBox}
-                            onBlur={isFormValidationOnBlur}
-                        />
-                        <label htmlFor="angular"> Angular </label>
-                        {errorFields.skills && <p className="danger">checkbox is required</p>}
-                    </div>
-                </div>
+                <Genter
+                    handleChange={handleChange}
+                    isFormValidationOnBlur={isFormValidationOnBlur}
+                    name="genter"
+                    type="radio"
+                    male="male"
+                    female="female"
+                    errorFields={errorFields}
+                />
+                <Dropdown
+                    errorFields={errorFields}
+                    handleChange={handleChange}
+                    isFormValidationOnBlur={isFormValidationOnBlur}
+                    id="select-country"
+                    name="Country"
+                />
+                <Radio
+                    errorFields={errorFields}
+                    handleChange={handleChange}
+                    isFormValidationOnBlur={isFormValidationOnBlur}
+                    type="checkbox"
+                    name="skills"
+                    value={["javaScript", "react", "angular"]}
+                />
+
                 <button type="submit">Submit</button>
             </form>
         </div>
