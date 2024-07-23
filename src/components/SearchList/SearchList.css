@@ -1,0 +1,16 @@
+.search-list-container {
+  height: 300px;
+  overflow: auto;
+}
+.search-list-container .search-items {
+  background-color: #374051;
+  color: #fff;
+  margin-bottom: 5px;
+  padding: 20px;
+  border-radius: 4px;
+  display: flex;
+  word-break: break-all;
+}
+.search-list-container .search-items .title {
+  margin-left: 10px;
+}
