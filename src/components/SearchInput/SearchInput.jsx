@@ -2,7 +2,7 @@ import React from 'react'
 import "./SearchInput.css"
 
 
-const SearchInput = ({handleChange}) => {
+const SearchInput = ({searchInputvalue,handleChange}) => {
     return (
         <div className='search-input-container'>
             <input onChange={handleChange} type="text" placeholder='Search here...' />

@@ -1,7 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Search.css'
 import SearchList from './SearchList/SearchList'
 import SearchInput from './SearchInput/SearchInput'
+import axios from 'axios'
+
+const API_URL = 'https://api.themoviedb.org/3/search/movie?api_key=d3449ff6ec0c027623bf6b6f5fff78b3&language=en-US&page=18include_adult=false'
 
 const Search = () => {
 
@@ -11,6 +14,21 @@ const Search = () => {
     const handleChange = (event) => {
         setSearchInputvalue(event.target.value)
     }
+
+    const fetchMovieList = async () => {
+        const response = await axios(API_URL, {
+            params: {
+                query: 'movie',
+            }
+        })
+        setSearchList(response.data.results)
+        console.log(response.data.results);
+    }
+
+    useEffect(() => {
+        fetchMovieList()
+    }, [])
+
 
     return (
         <div className='search-container'>
