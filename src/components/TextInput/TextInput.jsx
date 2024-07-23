@@ -1,19 +1,27 @@
 import React from 'react'
 
-const TextInput = ({ handleChange, isFormValidationOnBlur, errorFields, label }) => {
+export const TextInput = (
+    {
+        handleChange,
+        isFormValidationOnBlur,
+        errorFields,
+        label,
+        id,
+        name,
+        type
+    }) => {
     return (
         <div className="input-section">
-            <label htmlFor="firstName">{label} <span className="danger">*</span></label>
+            <label htmlFor={name}>{label} <span className="danger">*</span></label>
             <input
-                id="firstName"
-                type="text"
-                name="firstName"
+                id={id}
+                type={type}
+                name={name}
                 onChange={handleChange}
                 onBlur={isFormValidationOnBlur}
             />
-            {errorFields.firstName && <p className="danger">{label} is required</p>}
+            {errorFields[name] && <p className="danger">{label} is required</p>}
         </div>
     )
 }
 
-export default TextInput

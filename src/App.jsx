@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import "./styles/global.css";
-import TextInput from "./components/TextInput/TextInput";
+import { TextInput } from "./components/TextInput/TextInput";
 
 function App() {
 
@@ -126,13 +126,24 @@ function App() {
             <form className="form" onSubmit={handleSubmit} autoComplete="off">
                 <h1>Register</h1>
                 <p className="caption">Please fill the form.</p>
-                <TextInput handleChange={handleChange} isFormValidationOnBlur={isFormValidationOnBlur} errorFields={errorFields} label={'First Name'} />
-                <div className="input-section">
-                    <label htmlFor="email">Email <span className="danger">*</span></label>
-                    <input id="email" type="email" name="email" onChange={handleChange} onBlur={isFormValidationOnBlur}
-                    />
-                    {errorFields.email && <p className="danger">Email is required</p>}
-                </div>
+                <TextInput
+                    handleChange={handleChange}
+                    isFormValidationOnBlur={isFormValidationOnBlur}
+                    errorFields={errorFields}
+                    label="First Name"
+                    id="firs-name"
+                    name="firstName"
+                    type="text"
+                />
+                <TextInput
+                    handleChange={handleChange}
+                    isFormValidationOnBlur={isFormValidationOnBlur}
+                    errorFields={errorFields}
+                    label="Email"
+                    id="email"
+                    name="email"
+                    type="email"
+                />
                 <div className="input-section radio-groups">
                     <label className="radio-title" htmlFor="genter">Genter : <span className="danger">*</span></label>
                     <div>
