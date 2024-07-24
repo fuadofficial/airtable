@@ -1,6 +1,4 @@
-import React from 'react'
 import Search from './components/Search'
-import './style/global.css'
 
 const App = () => {
     return (
@@ -11,3 +9,4 @@ const App = () => {
 }
 
 export default App
+

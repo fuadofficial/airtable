@@ -1,11 +1,11 @@
 import React from 'react'
 import './SearchList.css'
 
-const SearchList = ({ firlteredList }) => {
+const SearchList = ({ searchList }) => {
 
     return (
         <div className='search-list-container'>
-            {firlteredList.map((data) => {
+            {searchList.map((data) => {
                 return (
                     <div key={data.id} className="search-items">
                         <img
