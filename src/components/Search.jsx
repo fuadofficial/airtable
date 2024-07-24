@@ -10,9 +10,15 @@ const Search = () => {
 
     const [searchInputvalue, setSearchInputvalue] = useState("")
     const [searchList, setSearchList] = useState([])
+    const [firlteredList, setFirlteredList] = useState([])
 
     const handleChange = (event) => {
         setSearchInputvalue(event.target.value)
+
+        const newFilteredItems = searchList.filter((data) => {
+            return data.title.toLowerCase().includes(event.target.value.toLowerCase());
+        });
+        setFirlteredList(newFilteredItems)
     }
 
     const fetchMovieList = async () => {
@@ -22,12 +28,12 @@ const Search = () => {
             }
         })
         setSearchList(response.data.results)
+        setFirlteredList(response.data.results)
     }
 
     useEffect(() => {
         fetchMovieList()
     }, [])
-
 
     return (
         <div className='search-container'>
@@ -36,7 +42,7 @@ const Search = () => {
                 <h1>Looking for a movie ?</h1>
             </div>
             <SearchInput searchInputvalue={searchInputvalue} handleChange={handleChange} />
-            <SearchList searchList={searchList} />
+            <SearchList firlteredList={firlteredList} />
         </div>
     )
 }
