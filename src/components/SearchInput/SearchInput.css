@@ -8,6 +8,7 @@
   width: 100%;
   margin-bottom: 15px;
   border-radius: 4px;
+  outline: none;
 }
 .search-input-container button {
   cursor: pointer;

@@ -22,7 +22,6 @@ const Search = () => {
             }
         })
         setSearchList(response.data.results)
-        console.log(response.data.results);
     }
 
     useEffect(() => {
@@ -34,7 +33,7 @@ const Search = () => {
         <div className='search-container'>
             <div className="heading-section">
                 <img src="https://static-00.iconduck.com/assets.00/search-icon-2048x2048-cmujl7en.png" alt="Search" />
-                <h1>Looking for a movie?</h1>
+                <h1>Looking for a movie ?</h1>
             </div>
             <SearchInput searchInputvalue={searchInputvalue} handleChange={handleChange} />
             <SearchList searchList={searchList} />
