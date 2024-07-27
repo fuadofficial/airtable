@@ -24,14 +24,15 @@ const Search = () => {
         try {
             const response = await axios(API_URL, {
                 params: {
-                    query:searchInputvalue
+                    query: searchInputvalue
                 }
             })
             setSearchList(response.data.results)
         } catch (error) {
-            console.log(error);
+            console.log(`Api not working..${error}`);
         }
     }
+
 
     useEffect(() => {
         fetchMovieList()
