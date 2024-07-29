@@ -1,42 +1,15 @@
 import React, { useReducer } from 'react'
 import './Counter.css'
+import { ACTIONS, counterReducer } from './CouterReducer'
 
-const counterReducer = (state, action) => {
-    switch (action.type) {
-        case "increment": {
-            return {
-                count: state.count + 1
-            }
-        }
-        case "decrement": {
-            return {
-                count: state.count - 1
-            }
-        }
-        case "reset": {
-            return {
-                count: 0
-            }
-        }
-        case "onincrement_by": {
-            return {
-                count: state.count + action.payload
-            }
-        }
-        case "ondecrement_by": {
-            return {
-                count: state.count + action.payload
-            }
-        }
-        default:
-            break;
-    }
-}
+
 
 const Counter = () => {
     const [state, dispatch] = useReducer(counterReducer, {
         count: 0,
     })
+
+    const { INCREMENT, DECREMENT, RESET, INCREMENTBY, DECREMENTBY } = ACTIONS
 
     return (
         <div className='counter-container'>
@@ -44,11 +17,11 @@ const Counter = () => {
                 <h1>{state.count}</h1>
             </div>
             <div className="buttons">
-                <button onClick={() => dispatch({ type: 'increment' })}> INcrement</button>
-                <button onClick={() => dispatch({ type: 'decrement' })}>Decrement</button>
-                <button onClick={() => dispatch({ type: 'reset' })}>Reset</button>
-                <button onClick={() => dispatch({ type: 'onincrement_by', payload: 10 })}>on Increment By</button>
-                <button onClick={() => dispatch({ type: 'ondecrement_by', payload: -10 })}>on Decrement By</button>
+                <button onClick={() => dispatch({ type: INCREMENT })}> INcrement</button>
+                <button onClick={() => dispatch({ type: DECREMENT })}>Decrement</button>
+                <button onClick={() => dispatch({ type: RESET })}>Reset</button>
+                <button onClick={() => dispatch({ type: INCREMENTBY, payload: 10 })}>Increment 10</button>
+                <button onClick={() => dispatch({ type: DECREMENTBY, payload: 10 })}>Decrement 10</button>
             </div>
         </div>
     )
