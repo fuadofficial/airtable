@@ -1,18 +1,19 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { AuthContext } from '../context/authContext'
 import Home from './Home'
 
 const Login = () => {
-  const { auth, setAuth } = useContext(AuthContext)
+  const { auth, login } = useContext(AuthContext)
+  console.log(auth);
   return (
     <div>
       {auth ? (
         <Home />
-      ):(
-      <>
-        <h1>Plese Login</h1>
-        <button onClick={() => setAuth(true)}>Login</button>
-      </>
+      ) : (
+        <>
+          <h1>Plese Login</h1>
+          <button onClick={login}>Login</button>
+        </>
       )}
     </div>
   )
