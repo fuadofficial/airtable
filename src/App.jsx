@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Login from './pages/Login'
 import Product from './pages/Product'
+import ProtectdRoute from './components/HomeProject/Header/ProtectdRoute/ProtectdRoute'
 import Header from './components/HomeProject/Header/Header'
 
 const App = () => {
@@ -19,13 +20,15 @@ const App = () => {
             {/* ProductProject */}
 
             <Router>
-                <Header />
+                <Header/>
                 <Routes>
                     <Route path='/' element={<Home />} />
-                    <Route path='/about' element={<About />} />
                     <Route path='/login' element={<Login />} />
-                    <Route path='/product' element={<Product />} />
-                    <Route path='/product/:id' element={<Product />} />
+                    <Route element={<ProtectdRoute />}>
+                        <Route path='/about' element={<About />} />
+                        <Route path='/product' element={<Product />} />
+                        <Route path='/product/:id' element={<Product />} />
+                    </Route>
                 </Routes>
             </Router>
 
