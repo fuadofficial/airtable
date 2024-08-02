@@ -1,11 +1,10 @@
-import { useContext } from 'react'
-import { AuthContext } from '../context/authContext'
+import {useAuth } from '../context/authContext'
 import Home from './Home'
 import Container from '../layout/Container'
 
 const Login = () => {
 
-  const { auth, login } = useContext(AuthContext)
+  const { auth, login } = useAuth()
   console.log(auth);
   return (
     <Container>

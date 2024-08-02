@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom'
 import './Header.css'
-import { useContext } from 'react'
-import { AuthContext } from '../../../context/authContext'
+import { useAuth } from '../../../context/authContext'
 
 const Header = () => {
-    const { auth } = useContext(AuthContext)
+    const { auth } = useAuth()
     return (
         <header className='navbar'>
             <Link to={'/'}>Home</Link>
