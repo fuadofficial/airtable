@@ -7,6 +7,7 @@ import Login from './pages/Login'
 import Product from './pages/Product'
 import ProtectdRoute from './components/HomeProject/ProtectedRout/ProtectedRout'
 import Header from './components/HomeProject/Header/Header'
+import ErrorPage from './pages/ErrorPage'
 
 const App = () => {
     return (
@@ -18,7 +19,7 @@ const App = () => {
             {/* <Counter /> */}
 
             {/* ProductProject */}
-            
+
 
             <Router>
                 <Header />
@@ -30,6 +31,7 @@ const App = () => {
                         <Route path='/product' element={<Product />} />
                         <Route path='/product/:id' element={<Product />} />
                     </Route>
+                    <Route path='*' element={<ErrorPage />} />
                 </Routes>
             </Router>
         </div>

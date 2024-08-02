@@ -1,25 +1,22 @@
-import {useAuth } from '../context/authContext'
-import Home from './Home'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/authContext'
 import Container from '../layout/Container'
 
 const Login = () => {
+    const { login } = useAuth()
+    const navigate = useNavigate()
+    return (
+        <Container>
+            <div >
 
-  const { auth, login } = useAuth()
-  console.log(auth);
-  return (
-    <Container>
-      <div >
-        {auth ? (
-          <Home />
-        ) : (
-          <>
-            <h1>Plese Login</h1>
-            <button onClick={login}>Login</button>
-          </>
-        )}
-      </div>
-    </Container>
-  )
+                <h1>Plese Login</h1>
+                <button onClick={() => {
+                    login();
+                    navigate(-1);
+                }}>Login</button>
+            </div>
+        </Container >
+    )
 }
 
 export default Login
