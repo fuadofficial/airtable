@@ -5,8 +5,8 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Login from './pages/Login'
 import Product from './pages/Product'
-import ProtectdRoute from './components/HomeProject/Header/ProtectdRoute/ProtectdRoute'
 import Header from './components/HomeProject/Header/Header'
+import ProtectdRoute from './components/HomeProject/ProtectedRout/ProtectedRout'
 
 const App = () => {
     return (
@@ -18,9 +18,8 @@ const App = () => {
             {/* <Counter /> */}
 
             {/* ProductProject */}
-
             <Router>
-                <Header/>
+                <Header />
                 <Routes>
                     <Route path='/' element={<Home />} />
                     <Route path='/login' element={<Login />} />
