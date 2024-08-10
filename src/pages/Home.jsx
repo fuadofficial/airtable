@@ -1,10 +1,7 @@
 import { useNavigate } from 'react-router-dom'
-<<<<<<< HEAD
  
-=======
 import Container from '../layout/Container'
 
->>>>>>> 5816d9b1bf0ec206bae658d5ff7ee1430db8203a
 const Home = () => {
 
     const navigate = useNavigate()
