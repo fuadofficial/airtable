@@ -1,9 +1,14 @@
-import React from 'react'
+import { useContext } from "react"
+import { AuthContext } from "../../../context/authContext"
+import { Navigate, Outlet } from "react-router-dom"
 
 const ProtectedRout = () => {
-  return (
-    <div>ProtectedRout</div>
-  )
+  const { auth } = useContext(AuthContext)
+
+  if (!auth) {
+    return <Navigate to={'/login'} />
+  }
+  return <Outlet />
 }
 
 export default ProtectedRout
