@@ -1,13 +1,15 @@
-// import Counter from './components/counter/Counter'
+import Counter from './components/counter/Counter'
 // import Search from './components/Search'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
-import About from './pages/About'
-import Login from './pages/Login'
-import Product from './pages/Product'
-import ProtectdRoute from './components/HomeProject/ProtectedRout/ProtectedRout'
-import Header from './components/HomeProject/Header/Header'
-import ErrorPage from './pages/ErrorPage'
+
+// ProductProject
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+// import Home from './pages/Home'
+// import About from './pages/About'
+// import Login from './pages/Login'
+// import Product from './pages/Product'
+// import ProtectdRoute from './components/HomeProject/ProtectedRout/ProtectedRout'
+// import Header from './components/HomeProject/Header/Header'
+// import ErrorPage from './pages/ErrorPage'
 
 const App = () => {
     return (
@@ -16,12 +18,10 @@ const App = () => {
             {/* <Search /> */}
 
             {/* counter porject */}
-            {/* <Counter /> */}
+            <Counter />
 
             {/* ProductProject */}
-
-
-            <Router>
+            {/* <Router>
                 <Header />
                 <Routes>
                     <Route path='/' element={<Home />} />
@@ -33,7 +33,7 @@ const App = () => {
                     </Route>
                     <Route path='*' element={<ErrorPage />} />
                 </Routes>
-            </Router>
+            </Router> */}
         </div>
     )
 }
