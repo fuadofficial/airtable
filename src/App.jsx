@@ -1,5 +1,8 @@
-import Counter from './components/counter/Counter'
+// import Counter from './components/counter/Counter'
 // import Search from './components/Search'
+
+import { useEffect, useState } from "react";
+import { BsDatabaseCheck } from "react-icons/bs";
 
 // ProductProject
 // import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
@@ -12,13 +15,33 @@ import Counter from './components/counter/Counter'
 // import ErrorPage from './pages/ErrorPage'
 
 const App = () => {
+
+    const [value, setValue] = useState()
+
+    const fetchApi = async () => {
+        const responce = await fetch('http://localhost:3000/product')
+        const data = await responce.json();
+        setValue(data)
+    }
+
+    useEffect(() => {
+        fetchApi()
+    }, [])
+
+
     return (
         <div>
+            <ul>
+                {value.map((item, index) => (
+                    <li key={index}>{item.name}</li>
+                ))}
+            </ul>
+
             {/* search project */}
             {/* <Search /> */}
 
             {/* counter porject */}
-            <Counter />
+            {/* <Counter /> */}
 
             {/* ProductProject */}
             {/* <Router>
@@ -34,6 +57,7 @@ const App = () => {
                     <Route path='*' element={<ErrorPage />} />
                 </Routes>
             </Router> */}
+
         </div>
     )
 }

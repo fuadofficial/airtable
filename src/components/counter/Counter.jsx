@@ -11,6 +11,7 @@ const Counter = () => {
 
     const { INCREMENT, DECREMENT, RESET, INCREMENTBY, DECREMENTBY } = ACTIONS
 
+
     return (
         <div className='counter-container'>
             <div className="heading">
