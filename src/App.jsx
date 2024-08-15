@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 // import Header from './components/HomeProject/Header/Header'
 // import ErrorPage from './pages/ErrorPage'
 
+// this is sample of api to call my nodejs backent for text
 const App = () => {
 
     const [value, setValue] = useState([])
