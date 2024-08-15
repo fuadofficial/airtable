@@ -2,7 +2,6 @@
 // import Search from './components/Search'
 
 import { useEffect, useState } from "react";
-import { BsDatabaseCheck } from "react-icons/bs";
 
 // ProductProject
 // import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
@@ -16,7 +15,7 @@ import { BsDatabaseCheck } from "react-icons/bs";
 
 const App = () => {
 
-    const [value, setValue] = useState()
+    const [value, setValue] = useState([])
 
     const fetchApi = async () => {
         const responce = await fetch('http://localhost:3000/product')
@@ -36,6 +35,7 @@ const App = () => {
                     <li key={index}>{item.name}</li>
                 ))}
             </ul>
+
 
             {/* search project */}
             {/* <Search /> */}
