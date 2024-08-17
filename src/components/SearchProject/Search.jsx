@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './Search.css'
 import SearchList from './SearchList/SearchList'
 import SearchInput from './SearchInput/SearchInput'
 import axios from 'axios'
 
-const API_URL = 'https://api.themoviedb.org/3/search/movie?api_key=d3449ff6ec0c027623bf6b6f5fff78b3&language=en-US&page=18include_adult=false'
+// const API_URL = 'https://api.themoviedb.org/3/search/movie?api_key=d3449ff6ec0c027623bf6b6f5fff78b3&language=en-US&page=18include_adult=false'
+const API_URL = 'http://localhost:3000/'
 
 const Search = () => {
 
@@ -22,14 +23,31 @@ const Search = () => {
 
     const fetchMovieList = async () => {
         try {
-            const response = await axios(API_URL, {
-                params: {
-                    query: searchInputvalue
+            const response = await axios(API_URL
+                , {
+                    params: {
+                        movieName: searchInputvalue
+                    }
                 }
-            })
+            )
             setSearchList(response.data.results)
         } catch (error) {
-            console.log(`Api not working..${error}`);
+            console.log(`Api get not working..${error}`);
+        }
+    }
+
+    const submitMovie = async () => {
+        try {
+            const response = await axios(API_URL, {
+                method: 'post',
+                data: {
+                    movieName: searchInputvalue
+                }
+            }
+            )
+            setSearchList(response.data.results)
+        } catch (error) {
+            console.log(`Api post not working..${error}`);
         }
     }
 
@@ -44,6 +62,7 @@ const Search = () => {
                 <img src="https://static-00.iconduck.com/assets.00/search-icon-2048x2048-cmujl7en.png" alt="Search" />
                 <h1>Looking for a movie ?</h1>
             </div>
+            <button onClick={submitMovie}>Submit</button>
             <SearchInput clearSearch={clearSearch} searchInputvalue={searchInputvalue} handleChange={handleChange} />
             <SearchList searchList={searchList} />
         </div>

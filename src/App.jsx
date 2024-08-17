@@ -1,7 +1,5 @@
 // import Counter from './components/counter/Counter'
-// import Search from './components/Search'
-
-import { useEffect, useState } from "react";
+import Search from './components/SearchProject/Search'
 
 // ProductProject
 // import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
@@ -16,30 +14,15 @@ import { useEffect, useState } from "react";
 // this is sample of api to call my nodejs backent for text
 const App = () => {
 
-    const [value, setValue] = useState([])
 
-    const fetchApi = async () => {
-        const responce = await fetch('http://localhost:3000/product')
-        const data = await responce.json();
-        setValue(data)
-    }
-
-    useEffect(() => {
-        fetchApi()
-    }, [])
 
 
     return (
         <div>
-            <ul>
-                {value.map((item, index) => (
-                    <li key={index}>{item.name}</li>
-                ))}
-            </ul>
 
 
             {/* search project */}
-            {/* <Search /> */}
+            <Search />
 
             {/* counter porject */}
             {/* <Counter /> */}
