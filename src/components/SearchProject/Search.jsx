@@ -5,7 +5,7 @@ import SearchInput from './SearchInput/SearchInput'
 import axios from 'axios'
 
 // const API_URL = 'https://api.themoviedb.org/3/search/movie?api_key=d3449ff6ec0c027623bf6b6f5fff78b3&language=en-US&page=18include_adult=false'
-const API_URL = 'http://localhost:3000/'
+const API_URL = 'http://localhost:3000/api/movies'
 
 const Search = () => {
 
@@ -40,7 +40,22 @@ const Search = () => {
             const response = await axios(API_URL, {
                 method: 'POST',
                 data: {
-                    movieName: searchInputvalue
+                    movieId: Date.now(),
+                    movieName: searchInputvalue,
+                }
+            })
+            setSearchList(response.data.results)
+        } catch (error) {
+            console.log(`Api post not working..${error}`);
+        }
+    }
+
+    const deleteMovie = async () => {
+        try {
+            const response = await axios(API_URL, {
+                method: 'DELETE',
+                data: {
+                    movieName: searchInputvalue,
                 }
             })
             setSearchList(response.data.results)
@@ -67,6 +82,7 @@ const Search = () => {
                 <h1>Looking for a movie ?</h1>
             </div>
             <button onClick={submitMovie}>Submit</button>
+            <button onClick={deleteMovie}>Delete</button>
             <SearchInput clearSearch={clearSearch} searchInputvalue={searchInputvalue} handleChange={handleChange} />
             <SearchList searchList={searchList} />
         </div>
