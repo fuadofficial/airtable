@@ -23,28 +23,26 @@ const Search = () => {
 
     const fetchMovieList = async () => {
         try {
-            const response = await axios(API_URL
-                , {
-                    params: {
-                        movieName: searchInputvalue
-                    }
+            const response = await axios(API_URL, {
+                params: {
+                    movieName: searchInputvalue
                 }
-            )
-            setSearchList(response.data.results)
+            }
+            );
+            setSearchList(response.data.results);
         } catch (error) {
-            console.log(`Api get not working..${error}`);
+            console.error(`API GET request failed: ${error}`);
         }
-    }
+    };
 
     const submitMovie = async () => {
         try {
             const response = await axios(API_URL, {
-                method: 'post',
+                method: 'POST',
                 data: {
                     movieName: searchInputvalue
                 }
-            }
-            )
+            })
             setSearchList(response.data.results)
         } catch (error) {
             console.log(`Api post not working..${error}`);
@@ -53,8 +51,14 @@ const Search = () => {
 
 
     useEffect(() => {
-        fetchMovieList()
-    }, [searchInputvalue])
+        const timeout = setTimeout(() => {
+            if (searchInputvalue) {
+                fetchMovieList();
+            }
+        }, 500);
+        return () => clearTimeout(timeout);
+    }, [searchInputvalue]);
+
 
     return (
         <div className='search-container'>
