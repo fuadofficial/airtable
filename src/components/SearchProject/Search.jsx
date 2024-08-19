@@ -40,7 +40,6 @@ const Search = () => {
             const response = await axios(API_URL, {
                 method: 'POST',
                 data: {
-                    movieId: Date.now(),
                     movieName: searchInputvalue,
                 }
             })
