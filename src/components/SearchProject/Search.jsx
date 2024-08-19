@@ -5,7 +5,7 @@ import SearchInput from './SearchInput/SearchInput'
 import axios from 'axios'
 
 // const API_URL = 'https://api.themoviedb.org/3/search/movie?api_key=d3449ff6ec0c027623bf6b6f5fff78b3&language=en-US&page=18include_adult=false'
-const API_URL = 'http://localhost:3000/api/movies'
+const API_URL = 'http://localhost:4000/api/movies'
 
 const Search = () => {
 
